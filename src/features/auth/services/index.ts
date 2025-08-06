@@ -34,3 +34,35 @@ export async function signUp({
     throw new Error("Registration failed: An unexpected error occurred");
   }
 }
+
+export async function signIn({
+  email,
+  password,
+}: AuthRequest): Promise<AuthResponse> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": API_KEY,
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || "Login failed");
+    }
+
+    const data = await response.json();
+    return data as AuthResponse;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Login failed: ${error.message}`);
+    }
+    throw new Error("Login failed: An unexpected error occurred");
+  }
+}
