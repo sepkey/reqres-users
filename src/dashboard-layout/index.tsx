@@ -42,7 +42,7 @@ export default function DashboardLayout() {
             placement="left"
             onClose={() => setDrawerVisible(false)}
             open={drawerVisible}
-            width={200}
+            width={250}
             styles={{
               body: {
                 padding: 0,
@@ -62,7 +62,7 @@ export default function DashboardLayout() {
           trigger={null}
           collapsible
           collapsed={collapsed}
-          width={200}
+          width={250}
         >
           <Sidebar
             isMobile={isMobile}

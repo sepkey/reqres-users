@@ -30,14 +30,21 @@ export default function Sidebar({ isMobile, closeDrawer }: SidebarProps) {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        padding: "10px",
+      }}
+    >
       <Link
         to={homePath()}
         style={{
-          height: "60px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          padding: "16px 0",
         }}
       >
         <img
@@ -55,7 +62,7 @@ export default function Sidebar({ isMobile, closeDrawer }: SidebarProps) {
         selectedKeys={[pathname]}
         onClick={handleMenuClick}
         items={menuItems}
-        style={{ backgroundColor: "transparent", flex: 1 }}
+        style={{ backgroundColor: "transparent", flex: 1, border: "none" }}
       />
     </div>
   );
