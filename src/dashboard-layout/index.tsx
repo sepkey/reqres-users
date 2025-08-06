@@ -7,7 +7,7 @@ import Sidebar from "./sidebar";
 
 const { Header, Sider, Content } = AntdLayout;
 
-export default function Layout() {
+export default function DashboardLayout() {
   const [collapsed, setCollapsed] = useState(false);
   const [drawerVisible, setDrawerVisible] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -43,7 +43,12 @@ export default function Layout() {
             onClose={() => setDrawerVisible(false)}
             open={drawerVisible}
             width={200}
-            bodyStyle={{ padding: 0, backgroundColor: "white" }}
+            styles={{
+              body: {
+                padding: 0,
+                backgroundColor: "white",
+              },
+            }}
           >
             <Sidebar
               isMobile={isMobile}

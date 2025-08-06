@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router";
-import Layout from "../layout";
+import DashboardLayout from "../dashboard-layout";
 import {
   Error,
   Home,
@@ -10,21 +10,32 @@ import {
   UserEdit,
   Users,
 } from "../pages";
-import { homePath, signInPath, signUpPath, usersPath } from "./paths";
+import { signInPath, signUpPath, usersPath } from "./paths";
+import ProtectedRoute from "./protected-route";
+import RootLayout from "./root-layout";
 
 export const router = createBrowserRouter([
   {
-    path: homePath(),
-    Component: Layout,
+    element: <RootLayout />,
     errorElement: <Error />,
     children: [
-      { index: true, element: <Home /> },
-      { path: usersPath(), element: <Users /> },
-      { path: `${usersPath()}/:userId`, element: <User /> },
-      { path: `${usersPath()}/:userId/edit`, element: <UserEdit /> },
+      { path: signInPath(), element: <SignIn /> },
+      { path: signUpPath(), element: <SignUp /> },
+      {
+        element: <ProtectedRoute />,
+        children: [
+          {
+            element: <DashboardLayout />,
+            children: [
+              { index: true, element: <Home /> },
+              { path: usersPath(), element: <Users /> },
+              { path: `${usersPath()}/:userId`, element: <User /> },
+              { path: `${usersPath()}/:userId/edit`, element: <UserEdit /> },
+            ],
+          },
+        ],
+      },
       { path: "*", element: <NotFound /> },
     ],
   },
-  { path: signInPath(), element: <SignIn /> },
-  { path: signUpPath(), element: <SignUp /> },
 ]);
