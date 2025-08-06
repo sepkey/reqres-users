@@ -11,6 +11,7 @@ export default function Providers() {
       theme={{
         token: {
           colorPrimary: "#08979c",
+          borderRadius: 4,
         },
       }}
     >
