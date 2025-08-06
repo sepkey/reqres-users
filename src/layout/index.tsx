@@ -19,34 +19,46 @@ export default function Layout() {
     <AntdLayout style={{ minHeight: "100vh" }}>
       {isMobile ? (
         <>
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setDrawerVisible(true)}
+          <Header
             style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
+              padding: 0,
+              background: colorBgContainer,
+              display: "flex",
+              alignItems: "center",
             }}
-          />
+          >
+            <Button
+              type="text"
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setDrawerVisible(true)}
+              style={{
+                fontSize: "16px",
+                width: 64,
+                height: 64,
+              }}
+            />
+          </Header>
           <Drawer
             placement="left"
             onClose={() => setDrawerVisible(false)}
             open={drawerVisible}
-            bodyStyle={{ padding: 0 }}
+            width={200}
+            bodyStyle={{ padding: 0, backgroundColor: "white" }}
           >
-            <AntdLayout>
-              <Sider trigger={null} collapsible>
-                <Sidebar
-                  isMobile={isMobile}
-                  closeDrawer={() => setDrawerVisible(false)}
-                />
-              </Sider>
-            </AntdLayout>
+            <Sidebar
+              isMobile={isMobile}
+              closeDrawer={() => setDrawerVisible(false)}
+            />
           </Drawer>
         </>
       ) : (
-        <Sider trigger={null} collapsible collapsed={collapsed}>
+        <Sider
+          style={{ backgroundColor: "white" }}
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          width={200}
+        >
           <Sidebar
             isMobile={isMobile}
             closeDrawer={() => setDrawerVisible(false)}
@@ -54,8 +66,8 @@ export default function Layout() {
         </Sider>
       )}
       <AntdLayout>
-        <Header style={{ padding: 0, background: colorBgContainer }}>
-          {!isMobile && (
+        {!isMobile && (
+          <Header style={{ padding: 0, background: colorBgContainer }}>
             <Button
               type="text"
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -66,8 +78,8 @@ export default function Layout() {
                 height: 64,
               }}
             />
-          )}
-        </Header>
+          </Header>
+        )}
         <Content
           style={{
             margin: "24px 16px",

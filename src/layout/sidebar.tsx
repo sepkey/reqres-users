@@ -7,6 +7,19 @@ type SidebarProps = {
   isMobile: boolean;
   closeDrawer: () => void;
 };
+const menuItems = [
+  {
+    key: homePath(),
+    icon: <HomeOutlined />,
+    label: "Home",
+  },
+  {
+    key: usersPath(),
+    icon: <UserOutlined />,
+    label: "Users",
+  },
+];
+
 export default function Sidebar({ isMobile, closeDrawer }: SidebarProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -15,26 +28,13 @@ export default function Sidebar({ isMobile, closeDrawer }: SidebarProps) {
     navigate(key);
     if (isMobile) closeDrawer();
   };
-  const menuItems = [
-    {
-      key: homePath(),
-      icon: <HomeOutlined />,
-      label: "Home",
-    },
-    {
-      key: usersPath(),
-      icon: <UserOutlined />,
-      label: "Users",
-    },
-  ];
 
   return (
     <Menu
-      theme="dark"
-      mode="inline"
       selectedKeys={[pathname]}
       onClick={handleMenuClick}
       items={menuItems}
+      style={{ backgroundColor: "transparent" }}
     />
   );
 }
