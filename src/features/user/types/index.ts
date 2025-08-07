@@ -10,3 +10,15 @@ export type PaginationParams = {
   page: number;
   per_page: number;
 };
+
+export type UsersResponse = {
+  data: User[];
+  page: number;
+  per_page: number;
+  total: number;
+  total_pages: number;
+};
+
+export type UserResponse = {
+  data: User;
+};

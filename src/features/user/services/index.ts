@@ -1,14 +1,6 @@
 import axios from "axios";
 import { apiClient } from "../../../api";
-import type { PaginationParams, User } from "../types";
-
-interface UsersResponse {
-  data: User[];
-  page: number;
-  per_page: number;
-  total: number;
-  total_pages: number;
-}
+import type { PaginationParams, UserResponse, UsersResponse } from "../types";
 
 export async function getUsers({ page = 1, per_page = 10 }: PaginationParams) {
   try {
@@ -24,5 +16,17 @@ export async function getUsers({ page = 1, per_page = 10 }: PaginationParams) {
       throw new Error(error.response?.data?.message || "Get users failed");
     }
     throw new Error("Get users failed");
+  }
+}
+
+export async function getUser(userId: string) {
+  try {
+    const response = await apiClient.get<UserResponse>(`/users/${userId}`);
+    return response.data.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data?.message || "Get user failed");
+    }
+    throw new Error("Get user failed");
   }
 }
