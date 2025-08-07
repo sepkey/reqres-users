@@ -52,3 +52,14 @@ export async function updateUser(userId: string, user: User) {
     throw new Error("Update user failed");
   }
 }
+
+export async function deleteUser(userId: string) {
+  try {
+    await apiClient.delete(`/users/${userId}`);
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data?.message || "Delete user failed");
+    }
+    throw new Error("Delete user failed");
+  }
+}
