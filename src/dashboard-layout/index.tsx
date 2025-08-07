@@ -43,6 +43,7 @@ export default function DashboardLayout() {
             onClose={() => setDrawerVisible(false)}
             open={drawerVisible}
             width={250}
+            closable={false}
             styles={{
               body: {
                 padding: 0,

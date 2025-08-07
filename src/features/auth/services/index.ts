@@ -28,3 +28,14 @@ export async function signIn(credentials: AuthRequest): Promise<AuthResponse> {
     throw new Error("Login failed: An unexpected error occurred");
   }
 }
+
+export async function signOut(): Promise<void> {
+  try {
+    await apiClient.post("/logout");
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error || "Logout failed");
+    }
+    throw new Error("Logout failed: An unexpected error occurred");
+  }
+}
