@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
-import { getUsers } from "../service";
-import { PaginationParams } from "../type";
+import { getUsers } from "../services";
+import { PaginationParams } from "../types";
 
 export const getUsersKey = (params: PaginationParams) => ["users", params];
 
