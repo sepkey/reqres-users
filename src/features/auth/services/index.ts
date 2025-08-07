@@ -1,67 +1,29 @@
+import axios from "axios";
+import { apiClient } from "../../../api";
 import { AuthRequest, AuthResponse } from "../types";
 
-const API_KEY = import.meta.env.VITE_API_KEY;
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
-export async function signUp({
-  email,
-  password,
-}: AuthRequest): Promise<AuthResponse> {
+export async function signUp(credentials: AuthRequest): Promise<AuthResponse> {
   try {
-    const response = await fetch(`${API_BASE_URL}/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": API_KEY,
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || "Registration failed");
-    }
-
-    const data = await response.json();
-    return data as AuthResponse;
+    const response = await apiClient.post<AuthResponse>(
+      "/register",
+      credentials
+    );
+    return response.data;
   } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(`Registration failed: ${error.message}`);
+    if (axios.isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error || "Registration failed");
     }
     throw new Error("Registration failed: An unexpected error occurred");
   }
 }
 
-export async function signIn({
-  email,
-  password,
-}: AuthRequest): Promise<AuthResponse> {
+export async function signIn(credentials: AuthRequest): Promise<AuthResponse> {
   try {
-    const response = await fetch(`${API_BASE_URL}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": API_KEY,
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || "Login failed");
-    }
-
-    const data = await response.json();
-    return data as AuthResponse;
+    const response = await apiClient.post<AuthResponse>("/login", credentials);
+    return response.data;
   } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(`Login failed: ${error.message}`);
+    if (axios.isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error || "Login failed");
     }
     throw new Error("Login failed: An unexpected error occurred");
   }
