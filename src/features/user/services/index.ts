@@ -1,6 +1,11 @@
 import axios from "axios";
 import { apiClient } from "../../../api";
-import type { PaginationParams, UserResponse, UsersResponse } from "../types";
+import type {
+  PaginationParams,
+  User,
+  UserResponse,
+  UsersResponse,
+} from "../types";
 
 export async function getUsers({ page = 1, per_page = 10 }: PaginationParams) {
   try {
@@ -28,5 +33,22 @@ export async function getUser(userId: string) {
       throw new Error(error.response?.data?.message || "Get user failed");
     }
     throw new Error("Get user failed");
+  }
+}
+
+export async function updateUser(userId: string, user: User) {
+  try {
+    const response = await apiClient.put<{
+      updatedAt: string;
+    }>(`/users/${userId}`, user);
+    return {
+      updatedAt: response.data.updatedAt,
+      userId,
+    };
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data?.message || "Update user failed");
+    }
+    throw new Error("Update user failed");
   }
 }

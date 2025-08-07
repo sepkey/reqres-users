@@ -1,10 +1,14 @@
 import { Card, Spin, Typography } from "antd";
 import { useGetUser } from "../hooks/use-get-user";
-import UserDetail from "./user-detail";
+import { User } from "../types";
 
 const { Text } = Typography;
 
-export default function UserContainer() {
+type UserContainerProps = {
+  Content: React.ComponentType<{ user: User }>;
+};
+
+export default function UserContainer({ Content }: UserContainerProps) {
   const { data: user, isLoading, error } = useGetUser();
 
   if (isLoading) {
@@ -37,5 +41,5 @@ export default function UserContainer() {
     );
   }
 
-  return <UserDetail user={user} />;
+  return <Content user={user} />;
 }
