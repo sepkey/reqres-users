@@ -6,7 +6,7 @@ import useSignIn from "../hooks/use-sign-in";
 import { AuthRequest } from "../types";
 
 export default function SignInForm() {
-  const { mutate: signIn } = useSignIn();
+  const { mutate: signIn, isPending: isSigningIn } = useSignIn();
 
   const onFinish: FormProps<AuthRequest>["onFinish"] = (values) => {
     console.log("Success:", values);
@@ -49,7 +49,13 @@ export default function SignInForm() {
           <Input.Password size="large" />
         </Form.Item>
         <Form.Item label={null} style={{ marginBottom: 0, marginTop: "12px" }}>
-          <Button block size="large" type="primary" htmlType="submit">
+          <Button
+            block
+            size="large"
+            type="primary"
+            htmlType="submit"
+            loading={isSigningIn}
+          >
             Sign In
           </Button>
         </Form.Item>

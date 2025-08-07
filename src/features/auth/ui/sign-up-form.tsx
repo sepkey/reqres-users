@@ -6,7 +6,7 @@ import useSignUp from "../hooks/use-sign-up";
 import { AuthRequest } from "../types";
 
 export default function SignUpForm() {
-  const { mutate: signUp } = useSignUp();
+  const { mutate: signUp, isPending: isSigningUp } = useSignUp();
 
   const onFinish: FormProps<AuthRequest>["onFinish"] = (values) => {
     signUp(values);
@@ -48,7 +48,13 @@ export default function SignUpForm() {
           <Input.Password size="large" />
         </Form.Item>
         <Form.Item label={null} style={{ marginBottom: 0, marginTop: "12px" }}>
-          <Button block size="large" type="primary" htmlType="submit">
+          <Button
+            block
+            size="large"
+            type="primary"
+            htmlType="submit"
+            loading={isSigningUp}
+          >
             Sign Up
           </Button>
         </Form.Item>

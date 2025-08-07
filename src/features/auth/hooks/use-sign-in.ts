@@ -1,4 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
+import { message } from "antd";
 import { useAuth } from "../context/auth-context";
 import { signIn } from "../services";
 
@@ -8,12 +9,11 @@ export default function useSignIn() {
   return useMutation({
     mutationFn: signIn,
     onSuccess: (data) => {
-      console.log(data, "data in onSuccess");
-
+      message.success("Sign in successful");
       setAuthToken(data.token);
     },
     onError: (error) => {
-      console.log(error, "error in onError");
+      message.error(error.message || "An error happened while signing up.");
     },
   });
 }
