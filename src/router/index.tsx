@@ -10,6 +10,7 @@ import {
   UserEdit,
   Users,
 } from "../pages";
+import GuestRoute from "./guest-route";
 import { signInPath, signUpPath, usersPath } from "./paths";
 import ProtectedRoute from "./protected-route";
 import RootLayout from "./root-layout";
@@ -19,8 +20,13 @@ export const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <Error />,
     children: [
-      { path: signInPath(), element: <SignIn /> },
-      { path: signUpPath(), element: <SignUp /> },
+      {
+        element: <GuestRoute />,
+        children: [
+          { path: signInPath(), element: <SignIn /> },
+          { path: signUpPath(), element: <SignUp /> },
+        ],
+      },
       {
         element: <ProtectedRoute />,
         children: [
@@ -31,11 +37,11 @@ export const router = createBrowserRouter([
               { path: usersPath(), element: <Users /> },
               { path: `${usersPath()}/:userId`, element: <User /> },
               { path: `${usersPath()}/:userId/edit`, element: <UserEdit /> },
+              { path: "*", element: <NotFound /> },
             ],
           },
         ],
       },
-      { path: "*", element: <NotFound /> },
     ],
   },
 ]);
