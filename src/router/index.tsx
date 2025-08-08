@@ -14,17 +14,18 @@ import GuestRoute from "./guest-route";
 import { signInPath, signUpPath, usersPath } from "./paths";
 import ProtectedRoute from "./protected-route";
 import RootLayout from "./root-layout";
+import withSuspense from "./withSuspense";
 
 export const router = createBrowserRouter([
   {
     element: <RootLayout />,
-    errorElement: <Error />,
+    errorElement: withSuspense(Error),
     children: [
       {
         element: <GuestRoute />,
         children: [
-          { path: signInPath(), element: <SignIn /> },
-          { path: signUpPath(), element: <SignUp /> },
+          { path: signInPath(), element: withSuspense(SignIn) },
+          { path: signUpPath(), element: withSuspense(SignUp) },
         ],
       },
       {
@@ -33,11 +34,14 @@ export const router = createBrowserRouter([
           {
             element: <DashboardLayout />,
             children: [
-              { index: true, element: <Home /> },
-              { path: usersPath(), element: <Users /> },
-              { path: `${usersPath()}/:userId`, element: <User /> },
-              { path: `${usersPath()}/:userId/edit`, element: <UserEdit /> },
-              { path: "*", element: <NotFound /> },
+              { index: true, element: withSuspense(Home) },
+              { path: usersPath(), element: withSuspense(Users) },
+              { path: `${usersPath()}/:userId`, element: withSuspense(User) },
+              {
+                path: `${usersPath()}/:userId/edit`,
+                element: withSuspense(UserEdit),
+              },
+              { path: "*", element: withSuspense(NotFound) },
             ],
           },
         ],
