@@ -1,5 +1,5 @@
-import { createBrowserRouter } from "react-router";
-import DashboardLayout from "../dashboard-layout";
+import { createBrowserRouter } from 'react-router';
+import DashboardLayout from '../dashboard-layout';
 import {
   Error,
   Home,
@@ -9,12 +9,12 @@ import {
   User,
   UserEdit,
   Users,
-} from "../pages";
-import GuestRoute from "./guest-route";
-import { signInPath, signUpPath, usersPath } from "./paths";
-import ProtectedRoute from "./protected-route";
-import RootLayout from "./root-layout";
-import withSuspense from "./withSuspense";
+} from '../pages';
+import GuestRoute from './guest-route';
+import { signInPath, signUpPath, usersPath } from './paths';
+import ProtectedRoute from './protected-route';
+import RootLayout from './root-layout';
+import withSuspense from './withSuspense';
 
 export const router = createBrowserRouter([
   {
@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
                 path: `${usersPath()}/:userId/edit`,
                 element: withSuspense(UserEdit),
               },
-              { path: "*", element: withSuspense(NotFound) },
+              { path: '*', element: withSuspense(NotFound) },
             ],
           },
         ],

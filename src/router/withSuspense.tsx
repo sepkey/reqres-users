@@ -1,5 +1,5 @@
-import { Suspense } from "react";
-import PageSpinner from "../components/page-spinner";
+import { Suspense } from 'react';
+import PageSpinner from '../components/page-spinner';
 
 const withSuspense = (Component: React.ComponentType) => (
   <Suspense fallback={<PageSpinner />}>

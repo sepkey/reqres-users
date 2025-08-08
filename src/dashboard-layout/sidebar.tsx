@@ -3,11 +3,11 @@ import {
   HomeOutlined,
   LogoutOutlined,
   UserOutlined,
-} from "@ant-design/icons";
-import { Button, Menu, Modal, Tooltip } from "antd";
-import { Link, useLocation, useNavigate } from "react-router";
-import useSignOut from "../features/auth/hooks/use-sign-out";
-import { homePath, usersPath } from "../router/paths";
+} from '@ant-design/icons';
+import { Button, Menu, Modal, Tooltip } from 'antd';
+import { Link, useLocation, useNavigate } from 'react-router';
+import useSignOut from '../features/auth/hooks/use-sign-out';
+import { homePath, usersPath } from '../router/paths';
 
 type SidebarProps = {
   isMobile: boolean;
@@ -18,12 +18,12 @@ const menuItems = [
   {
     key: homePath(),
     icon: <HomeOutlined />,
-    label: "Home",
+    label: 'Home',
   },
   {
     key: usersPath(),
     icon: <UserOutlined />,
-    label: "Users",
+    label: 'Users',
   },
 ];
 
@@ -43,11 +43,11 @@ export default function Sidebar({
 
   const handleLogout = () => {
     Modal.confirm({
-      title: "Logout",
-      content: "Are you sure you want to logout?",
-      okText: "Logout",
-      okType: "danger",
-      cancelText: "Cancel",
+      title: 'Logout',
+      content: 'Are you sure you want to logout?',
+      okText: 'Logout',
+      okType: 'danger',
+      cancelText: 'Cancel',
       onOk: () => signOut(),
     });
   };
@@ -55,51 +55,51 @@ export default function Sidebar({
   return (
     <div
       style={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        padding: isMobile ? "0" : "10px",
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        padding: isMobile ? '0' : '10px',
       }}
     >
       <div
         style={{
-          position: "relative",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "16px 0",
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '16px 0',
         }}
       >
         <Link
           to={homePath()}
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <img
-            src="./logo.svg"
-            alt="logo"
+            src='./logo.svg'
+            alt='logo'
             style={{
-              width: "auto",
-              height: "100%",
-              maxHeight: "32px",
-              objectFit: "contain",
+              width: 'auto',
+              height: '100%',
+              maxHeight: '32px',
+              objectFit: 'contain',
             }}
           />
         </Link>
         {isMobile && (
           <Button
-            type="text"
+            type='text'
             icon={<CloseOutlined />}
             onClick={closeDrawer}
             style={{
-              position: "absolute",
-              right: "16px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              fontSize: "16px",
+              position: 'absolute',
+              right: '16px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              fontSize: '16px',
               width: 32,
               height: 32,
             }}
@@ -112,44 +112,44 @@ export default function Sidebar({
         onClick={handleMenuClick}
         items={menuItems}
         style={{
-          backgroundColor: "transparent",
+          backgroundColor: 'transparent',
           flex: 1,
-          border: "none",
-          padding: isMobile ? "0 16px" : "0",
+          border: 'none',
+          padding: isMobile ? '0 16px' : '0',
         }}
       />
 
       <div
         style={{
-          padding: isMobile ? "16px" : "16px 0",
+          padding: isMobile ? '16px' : '16px 0',
         }}
       >
         <Tooltip
-          title={isSigningOut ? "Signing out..." : "Logout"}
-          placement="right"
+          title={isSigningOut ? 'Signing out...' : 'Logout'}
+          placement='right'
           open={!isMobile && collapsed ? undefined : false}
         >
           <Button
-            type="text"
+            type='text'
             icon={<LogoutOutlined />}
             onClick={handleLogout}
             loading={isSigningOut}
             disabled={isSigningOut}
             style={{
-              width: "100%",
-              textAlign: "left",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: !isMobile && collapsed ? "center" : "flex-start",
-              height: "40px",
-              color: "#ff4d4f",
+              width: '100%',
+              textAlign: 'left',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: !isMobile && collapsed ? 'center' : 'flex-start',
+              height: '40px',
+              color: '#ff4d4f',
             }}
           >
             {!isMobile && collapsed
               ? null
               : isSigningOut
-              ? "Signing out..."
-              : "Logout"}
+                ? 'Signing out...'
+                : 'Logout'}
           </Button>
         </Tooltip>
       </div>

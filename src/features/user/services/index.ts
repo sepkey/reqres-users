@@ -1,15 +1,15 @@
-import axios from "axios";
-import { apiClient } from "../../../api";
+import axios from 'axios';
+import { apiClient } from '../../../api';
 import type {
   PaginationParams,
   User,
   UserResponse,
   UsersResponse,
-} from "../types";
+} from '../types';
 
 export async function getUsers({ page = 1, per_page = 10 }: PaginationParams) {
   try {
-    const response = await apiClient.get<UsersResponse>("/users", {
+    const response = await apiClient.get<UsersResponse>('/users', {
       params: {
         page,
         per_page,
@@ -18,9 +18,9 @@ export async function getUsers({ page = 1, per_page = 10 }: PaginationParams) {
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw new Error(error.response?.data?.message || "Get users failed");
+      throw new Error(error.response?.data?.message || 'Get users failed');
     }
-    throw new Error("Get users failed");
+    throw new Error('Get users failed');
   }
 }
 
@@ -30,9 +30,9 @@ export async function getUser(userId: string) {
     return response.data.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw new Error(error.response?.data?.message || "Get user failed");
+      throw new Error(error.response?.data?.message || 'Get user failed');
     }
-    throw new Error("Get user failed");
+    throw new Error('Get user failed');
   }
 }
 
@@ -47,9 +47,9 @@ export async function updateUser(userId: string, user: User) {
     };
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw new Error(error.response?.data?.message || "Update user failed");
+      throw new Error(error.response?.data?.message || 'Update user failed');
     }
-    throw new Error("Update user failed");
+    throw new Error('Update user failed');
   }
 }
 
@@ -58,8 +58,8 @@ export async function deleteUser(userId: string) {
     await apiClient.delete(`/users/${userId}`);
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw new Error(error.response?.data?.message || "Delete user failed");
+      throw new Error(error.response?.data?.message || 'Delete user failed');
     }
-    throw new Error("Delete user failed");
+    throw new Error('Delete user failed');
   }
 }

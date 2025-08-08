@@ -1,4 +1,4 @@
-import { SaveOutlined, UserOutlined } from "@ant-design/icons";
+import { SaveOutlined, UserOutlined } from '@ant-design/icons';
 import {
   Avatar,
   Button,
@@ -9,11 +9,11 @@ import {
   Space,
   Typography,
   message,
-} from "antd";
-import { useNavigate, useParams } from "react-router";
-import { userPath } from "../../../router/paths";
-import useUpdateUser from "../hooks/use-update-user";
-import { User } from "../types";
+} from 'antd';
+import { useNavigate, useParams } from 'react-router';
+import { userPath } from '../../../router/paths';
+import useUpdateUser from '../hooks/use-update-user';
+import { User } from '../types';
 
 const { Title, Text } = Typography;
 
@@ -28,7 +28,7 @@ export default function UserEditForm({ user }: UserEditFormProps) {
   const { mutateAsync: updateUser, isPending: isUpdatingUser } =
     useUpdateUser();
 
-  const handleSubmit = async (values: Omit<User, "id">) => {
+  const handleSubmit = async (values: Omit<User, 'id'>) => {
     await updateUser(
       {
         userId: userId!,
@@ -36,11 +36,11 @@ export default function UserEditForm({ user }: UserEditFormProps) {
       },
       {
         onSuccess: () => {
-          message.success("User updated successfully!");
+          message.success('User updated successfully!');
           navigate(userPath(userId!));
         },
-        onError: (error) => {
-          message.error("Failed to update user. Please try again.");
+        onError: error => {
+          message.error('Failed to update user. Please try again.');
           console.error(error);
         },
       }
@@ -50,7 +50,7 @@ export default function UserEditForm({ user }: UserEditFormProps) {
   return (
     <Form
       form={form}
-      layout="vertical"
+      layout='vertical'
       initialValues={{
         first_name: user.first_name,
         last_name: user.last_name,
@@ -61,13 +61,13 @@ export default function UserEditForm({ user }: UserEditFormProps) {
     >
       <Card
         title={
-          <Space align="center">
+          <Space align='center'>
             <Avatar size={32} src={user.avatar} icon={<UserOutlined />} />
             <div style={{ padding: 8 }}>
               <Title level={4} style={{ margin: 0 }}>
                 Edit User: {user.first_name} {user.last_name}
               </Title>
-              <Text type="secondary">User ID: {user.id}</Text>
+              <Text type='secondary'>User ID: {user.id}</Text>
             </div>
           </Space>
         }
@@ -80,8 +80,8 @@ export default function UserEditForm({ user }: UserEditFormProps) {
               Cancel
             </Button>
             <Button
-              type="primary"
-              htmlType="submit"
+              type='primary'
+              htmlType='submit'
               icon={<SaveOutlined />}
               loading={isUpdatingUser}
             >
@@ -93,68 +93,68 @@ export default function UserEditForm({ user }: UserEditFormProps) {
         <Descriptions
           column={1}
           bordered
-          size="middle"
-          styles={{ label: { fontWeight: "bold" } }}
+          size='middle'
+          styles={{ label: { fontWeight: 'bold' } }}
         >
-          <Descriptions.Item label="First Name">
+          <Descriptions.Item label='First Name'>
             <Form.Item
-              name="first_name"
+              name='first_name'
               rules={[
-                { required: true, message: "Please enter first name" },
-                { min: 2, message: "First name must be at least 2 characters" },
+                { required: true, message: 'Please enter first name' },
+                { min: 2, message: 'First name must be at least 2 characters' },
               ]}
               style={{ margin: 0 }}
             >
-              <Input placeholder="Enter first name" />
+              <Input placeholder='Enter first name' />
             </Form.Item>
           </Descriptions.Item>
-          <Descriptions.Item label="Last Name">
+          <Descriptions.Item label='Last Name'>
             <Form.Item
-              name="last_name"
+              name='last_name'
               rules={[
-                { required: true, message: "Please enter last name" },
-                { min: 2, message: "Last name must be at least 2 characters" },
+                { required: true, message: 'Please enter last name' },
+                { min: 2, message: 'Last name must be at least 2 characters' },
               ]}
               style={{ margin: 0 }}
             >
-              <Input placeholder="Enter last name" />
+              <Input placeholder='Enter last name' />
             </Form.Item>
           </Descriptions.Item>
-          <Descriptions.Item label="Email">
+          <Descriptions.Item label='Email'>
             <Form.Item
-              name="email"
+              name='email'
               rules={[
-                { required: true, message: "Please enter email" },
-                { type: "email", message: "Please enter a valid email" },
+                { required: true, message: 'Please enter email' },
+                { type: 'email', message: 'Please enter a valid email' },
               ]}
               style={{ margin: 0 }}
             >
-              <Input placeholder="Enter email address" />
+              <Input placeholder='Enter email address' />
             </Form.Item>
           </Descriptions.Item>
-          <Descriptions.Item label="Avatar URL">
+          <Descriptions.Item label='Avatar URL'>
             <Form.Item
-              name="avatar"
+              name='avatar'
               rules={[
-                { required: true, message: "Please enter avatar URL" },
-                { type: "url", message: "Please enter a valid URL" },
+                { required: true, message: 'Please enter avatar URL' },
+                { type: 'url', message: 'Please enter a valid URL' },
               ]}
               style={{ margin: 0 }}
             >
-              <Input placeholder="Enter avatar image URL" />
+              <Input placeholder='Enter avatar image URL' />
             </Form.Item>
           </Descriptions.Item>
-          <Descriptions.Item label="Avatar Preview">
+          <Descriptions.Item label='Avatar Preview'>
             <Form.Item shouldUpdate style={{ margin: 0 }}>
               {({ getFieldValue }) => {
-                const avatarUrl = getFieldValue("avatar");
+                const avatarUrl = getFieldValue('avatar');
                 return (
                   <Avatar
                     size={64}
                     src={avatarUrl}
                     icon={<UserOutlined />}
                     style={{
-                      border: "1px solid #d9d9d9",
+                      border: '1px solid #d9d9d9',
                     }}
                   />
                 );

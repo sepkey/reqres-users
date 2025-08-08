@@ -1,6 +1,6 @@
-import { Navigate, Outlet } from "react-router";
-import { useAuth } from "../features/auth/context/auth-context";
-import { signInPath } from "./paths";
+import { Navigate, Outlet } from 'react-router';
+import { useAuth } from '../features/auth/context/auth-context';
+import { signInPath } from './paths';
 
 export default function ProtectedRoute() {
   const { isAuthenticated } = useAuth();

@@ -1,7 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
-import { message } from "antd";
-import { useAuth } from "../context/auth-context";
-import { signOut } from "../services";
+import { useMutation } from '@tanstack/react-query';
+import { message } from 'antd';
+import { useAuth } from '../context/auth-context';
+import { signOut } from '../services';
 
 export default function useSignOut() {
   const { logout } = useAuth();
@@ -10,10 +10,10 @@ export default function useSignOut() {
     mutationFn: signOut,
     onSuccess: () => {
       logout();
-      message.success("Sign out is successful");
+      message.success('Sign out is successful');
     },
-    onError: (error) => {
-      message.error(error.message || "An error happened while signing out.");
+    onError: error => {
+      message.error(error.message || 'An error happened while signing out.');
     },
   });
 }

@@ -1,45 +1,45 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { Layout as AntdLayout, Button, Drawer, theme } from "antd";
-import { useState } from "react";
-import { Outlet } from "react-router";
-import { useMediaQuery } from "../hooks/useMediaQuery";
-import Sidebar from "./sidebar";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { Layout as AntdLayout, Button, Drawer, theme } from 'antd';
+import { useState } from 'react';
+import { Outlet } from 'react-router';
+import { useMediaQuery } from '../hooks/useMediaQuery';
+import Sidebar from './sidebar';
 
 const { Header, Sider, Content } = AntdLayout;
 
 export default function DashboardLayout() {
   const [collapsed, setCollapsed] = useState(false);
   const [drawerVisible, setDrawerVisible] = useState(false);
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery('(max-width: 768px)');
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
   return (
-    <AntdLayout style={{ minHeight: "100vh" }}>
+    <AntdLayout style={{ minHeight: '100vh' }}>
       {isMobile ? (
         <>
           <Header
             style={{
               padding: 0,
               background: colorBgContainer,
-              display: "flex",
-              alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
             <Button
-              type="text"
+              type='text'
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
               onClick={() => setDrawerVisible(true)}
               style={{
-                fontSize: "16px",
+                fontSize: '16px',
                 width: 64,
                 height: 64,
               }}
             />
           </Header>
           <Drawer
-            placement="left"
+            placement='left'
             onClose={() => setDrawerVisible(false)}
             open={drawerVisible}
             width={250}
@@ -47,7 +47,7 @@ export default function DashboardLayout() {
             styles={{
               body: {
                 padding: 0,
-                backgroundColor: "white",
+                backgroundColor: 'white',
               },
             }}
           >
@@ -60,7 +60,7 @@ export default function DashboardLayout() {
         </>
       ) : (
         <Sider
-          style={{ backgroundColor: "white" }}
+          style={{ backgroundColor: 'white' }}
           trigger={null}
           collapsible
           collapsed={collapsed}
@@ -77,11 +77,11 @@ export default function DashboardLayout() {
         {!isMobile && (
           <Header style={{ padding: 0, background: colorBgContainer }}>
             <Button
-              type="text"
+              type='text'
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
               onClick={() => setCollapsed(!collapsed)}
               style={{
-                fontSize: "16px",
+                fontSize: '16px',
                 width: 64,
                 height: 64,
               }}
@@ -90,7 +90,7 @@ export default function DashboardLayout() {
         )}
         <Content
           style={{
-            margin: "24px",
+            margin: '24px',
             padding: 24,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,

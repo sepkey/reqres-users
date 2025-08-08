@@ -1,4 +1,4 @@
-import { Typography } from "antd";
+import { Typography } from 'antd';
 
 const { Title, Paragraph } = Typography;
 
@@ -6,23 +6,23 @@ export default function Home() {
   return (
     <div
       style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "70vh",
-        textAlign: "center",
-        gap: "24px",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '70vh',
+        textAlign: 'center',
+        gap: '24px',
       }}
     >
       <img
-        src="./logo.svg"
-        alt="Logo"
+        src='./logo.svg'
+        alt='Logo'
         style={{
-          width: "auto",
-          height: "120px",
-          maxWidth: "300px",
-          objectFit: "contain",
+          width: 'auto',
+          height: '120px',
+          maxWidth: '300px',
+          objectFit: 'contain',
         }}
       />
 
@@ -30,8 +30,8 @@ export default function Home() {
 
       <Paragraph
         style={{
-          fontSize: "18px",
-          color: "#8c8c8c",
+          fontSize: '18px',
+          color: '#8c8c8c',
         }}
       >
         Welcome to the Sepide Kia's users dashboard!

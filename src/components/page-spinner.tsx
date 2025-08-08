@@ -1,15 +1,15 @@
-import { Spin } from "antd";
+import { Spin } from 'antd';
 
 const PageSpinner = () => (
   <div
     style={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      height: "100vh",
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100vh',
     }}
   >
-    <Spin size="large" />
+    <Spin size='large' />
   </div>
 );
 

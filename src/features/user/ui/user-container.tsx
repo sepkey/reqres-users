@@ -1,7 +1,7 @@
-import { Card, Spin, Typography } from "antd";
-import { ComponentType } from "react";
-import { useGetUser } from "../hooks/use-get-user";
-import { User } from "../types";
+import { Card, Spin, Typography } from 'antd';
+import { ComponentType } from 'react';
+import { useGetUser } from '../hooks/use-get-user';
+import { User } from '../types';
 
 const { Text } = Typography;
 
@@ -17,8 +17,8 @@ export function withUser<T extends WithUserProps>(
 
     if (isLoading) {
       return (
-        <div style={{ textAlign: "center", padding: "50px 0" }}>
-          <Spin size="large" />
+        <div style={{ textAlign: 'center', padding: '50px 0' }}>
+          <Spin size='large' />
           <div style={{ marginTop: 16 }}>
             <Text>Loading user details...</Text>
           </div>
@@ -29,9 +29,9 @@ export function withUser<T extends WithUserProps>(
     if (error) {
       return (
         <Card>
-          <Text type="danger">
-            Error loading user details:{" "}
-            {error instanceof Error ? error.message : "Unknown error"}
+          <Text type='danger'>
+            Error loading user details:{' '}
+            {error instanceof Error ? error.message : 'Unknown error'}
           </Text>
         </Card>
       );
@@ -40,7 +40,7 @@ export function withUser<T extends WithUserProps>(
     if (!user) {
       return (
         <Card>
-          <Text type="warning">User not found</Text>
+          <Text type='warning'>User not found</Text>
         </Card>
       );
     }
