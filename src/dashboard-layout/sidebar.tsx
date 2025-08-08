@@ -4,13 +4,14 @@ import {
   LogoutOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Button, Menu, Modal } from "antd";
+import { Button, Menu, Modal, Tooltip } from "antd";
 import { Link, useLocation, useNavigate } from "react-router";
 import useSignOut from "../features/auth/hooks/use-sign-out";
 import { homePath, usersPath } from "../router/paths";
 
 type SidebarProps = {
   isMobile: boolean;
+  collapsed: boolean;
   closeDrawer: () => void;
 };
 const menuItems = [
@@ -26,7 +27,11 @@ const menuItems = [
   },
 ];
 
-export default function Sidebar({ isMobile, closeDrawer }: SidebarProps) {
+export default function Sidebar({
+  isMobile,
+  collapsed,
+  closeDrawer,
+}: SidebarProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { mutate: signOut, isPending: isSigningOut } = useSignOut();
@@ -120,24 +125,34 @@ export default function Sidebar({ isMobile, closeDrawer }: SidebarProps) {
           borderTop: "1px solid #f0f0f0",
         }}
       >
-        <Button
-          type="text"
-          icon={<LogoutOutlined />}
-          onClick={handleLogout}
-          loading={isSigningOut}
-          disabled={isSigningOut}
-          style={{
-            width: "100%",
-            textAlign: "left",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-start",
-            height: "40px",
-            color: "#ff4d4f",
-          }}
+        <Tooltip
+          title={isSigningOut ? "Signing out..." : "Logout"}
+          placement="right"
+          open={!isMobile && collapsed ? undefined : false}
         >
-          {isSigningOut ? "Signing out..." : "Logout"}
-        </Button>
+          <Button
+            type="text"
+            icon={<LogoutOutlined />}
+            onClick={handleLogout}
+            loading={isSigningOut}
+            disabled={isSigningOut}
+            style={{
+              width: "100%",
+              textAlign: "left",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: !isMobile && collapsed ? "center" : "flex-start",
+              height: "40px",
+              color: "#ff4d4f",
+            }}
+          >
+            {!isMobile && collapsed
+              ? null
+              : isSigningOut
+              ? "Signing out..."
+              : "Logout"}
+          </Button>
+        </Tooltip>
       </div>
     </div>
   );

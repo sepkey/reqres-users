@@ -53,6 +53,7 @@ export default function DashboardLayout() {
           >
             <Sidebar
               isMobile={isMobile}
+              collapsed={false}
               closeDrawer={() => setDrawerVisible(false)}
             />
           </Drawer>
@@ -67,6 +68,7 @@ export default function DashboardLayout() {
         >
           <Sidebar
             isMobile={isMobile}
+            collapsed={collapsed}
             closeDrawer={() => setDrawerVisible(false)}
           />
         </Sider>
