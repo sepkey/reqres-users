@@ -1,5 +1,5 @@
 import type { FormProps } from "antd";
-import { Button, Form, Input, Typography } from "antd";
+import { Button, Form, Input, message, Typography } from "antd";
 import { Link } from "react-router";
 import { signUpPath } from "../../../router/paths";
 import useSignIn from "../hooks/use-sign-in";
@@ -16,7 +16,7 @@ export default function SignInForm() {
   const onFinishFailed: FormProps<AuthRequest>["onFinishFailed"] = (
     errorInfo
   ) => {
-    console.log("Failed:", errorInfo);
+    message.error("Failed:" + errorInfo.errorFields[0].errors[0]);
   };
 
   return (

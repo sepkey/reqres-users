@@ -122,7 +122,6 @@ export default function Sidebar({
       <div
         style={{
           padding: isMobile ? "16px" : "16px 0",
-          borderTop: "1px solid #f0f0f0",
         }}
       >
         <Tooltip
