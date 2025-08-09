@@ -7,7 +7,7 @@ export default function UsersList() {
     return (
       <Typography.Text type='danger'>
         Error loading users:{' '}
-        {error instanceof Error ? error.message : 'Unknown error'}
+        {error instanceof Error ? error.message : 'Unknown error in users list'}
       </Typography.Text>
     );
   }
